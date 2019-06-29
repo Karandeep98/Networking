@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_github.view.*
 import java.text.ParsePosition
 
@@ -21,14 +22,13 @@ class GithubAdapter(private val context:Context, private val arrayList: ArrayLis
         val user=arrayList[position]
         holder.bind(user)
     }
-
 }
 class GithubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     fun bind(user: GithubUser) {
         with(itemView){
-        streettv.text=user.streetname
-            suitetv.text=user.suitename
-            citytv.text=user.cityname
+        logintv.text=user.login
+            idtv.text=user.id.toString()
+            Picasso.get().load(user.avatar_url).into(img)
         }
 
     }

@@ -5,11 +5,16 @@
               android:layout_height="match_parent">
 
 <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-android:id="@+id/streettv"/>
+android:id="@+id/logintv"
+android:text="LOgin: "
+android:textSize="20sp"/>
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/suitetv"/>
-    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:id="@+id/citytv"/>
+              android:id="@+id/idtv"
+    android:text="ID: "
+    android:textSize="20sp"/>
+    <ImageView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/img"
+    />
 
 
 </LinearLayout>

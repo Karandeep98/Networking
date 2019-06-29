@@ -1,6 +1,7 @@
 package codingblocks.com.networking
 
 class GithubUser(
-    val streetname: String,
-    val suitename: String,
-    val cityname: String)
+    val login: String,
+    val id: Int,
+    val avatar_url: String)
+data class Github(val items:ArrayList<GithubUser>)
