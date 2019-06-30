@@ -25,10 +25,18 @@ class GithubAdapter(private val context:Context, private val arrayList: ArrayLis
 }
 class GithubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     fun bind(user: GithubUser) {
+
+//        with(itemView){
+//        logintv.text="Login :"+user.login
+//            idtv.text="Id: "+user.id.toString()
+//            Picasso.get().load(user.avatar_url).into(img)
+//        }
         with(itemView){
-        logintv.text=user.login
-            idtv.text=user.id.toString()
-            Picasso.get().load(user.avatar_url).into(img)
+            streettv.text="\nID: "+user.id+"\nName: "+user.name+"\nUsername: "+
+                    user.username+"\nEmail: "+user.email+"\nStreet: "+user.street+
+                    "\nSuite: "+user.suite+"\nCity: "+user.city+"\nZipcode: "+user.zipcode+"\n"
+
+
         }
 
     }
