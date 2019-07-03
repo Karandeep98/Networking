@@ -32,14 +32,15 @@ class MainActivity : AppCompatActivity() {
         val networkTask = NetworkTask()
         networkTask.execute(
             "https://jsonplaceholder.typicode.com/users",
-            "https://www.github.com",
-            "https://api.github.com/search/users?q=karandeep"
+            "https://api.github.com/search/users?q=karandeep",
+            "https://www.omdbapi.com/?i=tt3896198&apikey=74570384",
+            "https://api.themoviedb.org/3/movie/550?api_key=b315d3231fba4b90ca67901413855fb7"
         )
     }
 
     inner class NetworkTask : AsyncTask<String, Int, String>() {
         override fun doInBackground(vararg url: String?): String? {
-            val googleUrl = URL(url[0])
+            val googleUrl = URL(url[2])
             val connection = googleUrl.openConnection() as HttpURLConnection
             val isr = InputStreamReader(connection.inputStream)
             val bufferReader = BufferedReader(isr)
@@ -55,10 +56,10 @@ class MainActivity : AppCompatActivity() {
         override fun onPostExecute(result: String?) {
 
 //            Log.i("Networking", result)
-            val userList = arrayListOf<GithubUser>()
+//            val userList = arrayListOf<GithubUser>()
                 //To fetch data from github api
 //            val jsondata=JSONObject(result)
-
+//
 //            val userArray=jsondata.getJSONArray("items")
 //
 //            for (i in 0..20) {
@@ -71,33 +72,34 @@ class MainActivity : AppCompatActivity() {
 //                userList.add(user)
 //            }
             //To fetch data from jsonplaceholder api
-            val userArray=JSONArray(result)
+//            val userArray=JSONArray(result)
+//
+//            for (i in 0..8) {
+//                var user = userArray[i] as JSONObject
+//                val useraddr=user.getJSONObject("address")
+//                val streetname =useraddr.getString("street")
+//                val suitename =useraddr.getString("suite")
+//                val cityname =useraddr.getString("city")
+//                val u=GithubUser(
+//                    user.getInt("id"),
+//                    user.getString("name"),
+//                    user.getString("username"),
+//                    user.getString("email"),
+//                    streetname,suitename,cityname,
+//                    useraddr.getString("zipcode")
+//
+//                )
+//                userList.add(u)
+////                showdata.text=showdata.text.toString()+(i+1).toString()+streetname+"\n"+suitename+"\n"+cityname+"\n\n"
+//                     }
 
-            for (i in 0..8) {
-                var user = userArray[i] as JSONObject
-                val useraddr=user.getJSONObject("address")
-                val streetname =useraddr.getString("street")
-                val suitename =useraddr.getString("suite")
-                val cityname =useraddr.getString("city")
-                val u=GithubUser(
-                    user.getInt("id"),
-                    user.getString("name"),
-                    user.getString("username"),
-                    user.getString("email"),
-                    streetname,suitename,cityname,
-                    useraddr.getString("zipcode")
-
-                )
-                userList.add(u)
-//                showdata.text=showdata.text.toString()+(i+1).toString()+streetname+"\n"+suitename+"\n"+cityname+"\n\n"
-                     }
-
-
+            val userList = arrayListOf<Response>()
                 //To fetch data from github api using GSON library
-//                val user = Gson().fromJson(result, Github::class.java)
-//                userList.addAll(user.items)
+                val user = Gson().fromJson(result, Res::class.java)
+                userList.addAll(user.items)
                 //To fetch data from jsonplaceholder api using GSON library
-
+//            val user = Gson().fromJson(result, Array<GithubUser>::class.java)
+//               userList.addAll(user)
                 rview.layoutManager = LinearLayoutManager(this@MainActivity)
                 rview.adapter = GithubAdapter(this@MainActivity, userList)
 

@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_github.view.*
 import java.text.ParsePosition
 
-class GithubAdapter(private val context:Context, private val arrayList: ArrayList<GithubUser>)
+class GithubAdapter(private val context:Context, private val arrayList: ArrayList<Response>)
     : RecyclerView.Adapter<GithubViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):GithubViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -24,7 +24,7 @@ class GithubAdapter(private val context:Context, private val arrayList: ArrayLis
     }
 }
 class GithubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
-    fun bind(user: GithubUser) {
+    fun bind(user: Response) {
 
 //        with(itemView){
 //        logintv.text="Login :"+user.login
@@ -32,9 +32,10 @@ class GithubViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 //            Picasso.get().load(user.avatar_url).into(img)
 //        }
         with(itemView){
-            streettv.text="\nID: "+user.id+"\nName: "+user.name+"\nUsername: "+
-                    user.username+"\nEmail: "+user.email+"\nStreet: "+user.street+
-                    "\nSuite: "+user.suite+"\nCity: "+user.city+"\nZipcode: "+user.zipcode+"\n"
+//            streettv.text="\nID: "+user.id+"\nName: "+user.name+"\nUsername: "+
+//                    user.username+"\nEmail: "+user.email+"\nStreet: "+user.street+
+//                    "\nSuite: "+user.suite+"\nCity: "+user.city+"\nZipcode: "+user.zipcode+"\n"
+            streettv.text="\nTitle:"+user.title+"\nYear:"+user.year+"\nRated:"+user.rated
 
 
         }
